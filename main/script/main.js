@@ -1,4 +1,8 @@
 // trigger to play music in the background with sweetalert
+const video = document.getElementById('myVideo');
+const videoContainer = document.getElementById('video-container');
+let enable = false;
+
 window.addEventListener('load', () => {
     Swal.fire({
         title: 'Do you want to play music in the background?',
@@ -10,14 +14,37 @@ window.addEventListener('load', () => {
         cancelButtonText: 'No',
     }).then((result) => {
         if (result.isConfirmed) {
-            document.querySelector('.song').play();
-            animationTimeline();
+            enable = true;
+            document.body.style.background ='linear-gradient(to bottom right, #000000, #0000ff)';
+            video.muted = false; // Unmute the video
+            video.play(); // Play the video explicitly
         } else {
-            animationTimeline();
+            // Play the video muted if the user does not want music
+            document.body.style.background ='linear-gradient(to bottom right, #000000, #0000ff)';
+            video.muted = true; // Mute the video
+            video.play(); // Play the video explicitly
         }
     });
 });
 
+// Listen for video end event
+video.addEventListener('ended', () => {
+    console.log(videoContainer.style);
+    videoContainer.style.display = 'none'; // Hide the video container
+    document.body.style.overflow = 'auto'; // Enable scrolling
+    document.body.style.margin = ''; // Reset margin if needed
+    // Remove gradient background
+    document.body.style.background ='';
+    // Check if the user wanted music
+    if (enable) {
+        document.querySelector('.song').play(); // Play background music
+        animationTimeline(); // Trigger animations
+    } else {
+        animationTimeline(); // Trigger animations without music
+    }
+});
+
+ 
 
 // animation timeline
 const animationTimeline = () => {
