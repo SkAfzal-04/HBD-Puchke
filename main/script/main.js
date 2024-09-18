@@ -269,8 +269,14 @@ const animationTimeline = () => {
     );
 
     // Restart Animation on click
-    const replyBtn = document.getElementById("replay");
-    replyBtn.addEventListener("click", () => {
-        tl.restart();
-    });
+    // const replyBtn = document.getElementById("replay");
+    // replyBtn.addEventListener("click", () => {
+    //     tl.restart();
+    // });
+}
+
+function goToChat(){
+        var url = 'https://wa.me/+919679186577'; // replace with your WhatsApp number
+        window.open(url, '_blank');
+      
 }
