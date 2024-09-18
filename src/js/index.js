@@ -35,5 +35,5 @@ let removeSecondCanvas = setTimeout(function(){
 },9800)
 
 function redirectToLink() {
-		window.location.replace('../main/index.html'); // replace with your desired link
+		window.location.replace('main/index.html'); // replace with your desired link
   }
